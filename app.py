@@ -41,7 +41,7 @@ def request_and_save(url, filename):
 @app.route('/', methods=['GET', 'POST'])
 def index():
 
-    filename = None
+    filename = "image.png"
     if request.method == 'POST':
         f = request.files['file']
         filename = secure_filename(f.filename)
