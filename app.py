@@ -60,7 +60,7 @@ def apply_watermark():
 
     # GENERATE REQUEST FOR QRACKAJACK
     qr_req_url = 'https://qrackajack.expeditedaddons.com/?api_key=' + os.environ['QRACKAJACK_API_KEY'] + \
-                '&bg_color=%23ffffff&content=' + get_s3_url(bucket_name, filename) + '&fg_color=%23000000&height=256&width=256'
+                '&bg_color=%23ffffff&content=' + get_s3_url(bucket_name, filename) + '&fg_color=%23000000&height=100&width=100'
 
     qr_name = f"qr_{filename}"
     qr_path = request_and_save(qr_req_url, qr_name)
@@ -70,8 +70,8 @@ def apply_watermark():
 
     # GENERATE REQUEST FOR WATERMARKER
     watermark_req_url = 'https://watermarker.expeditedaddons.com/?api_key=' + \
-        os.environ['WATERMARKER_API_KEY'] + '&height=100&image_url=' + get_s3_url(bucket_name, filename) + \
-        '&opacity=50&position=center&watermark_url=' + get_s3_url(bucket_name, qr_name) + ' &width=100'
+        os.environ['WATERMARKER_API_KEY'] + '&height=256&image_url=' + get_s3_url(bucket_name, filename) + \
+        '&opacity=50&position=center&watermark_url=' + get_s3_url(bucket_name, qr_name) + ' &width=256'
 
     watermark_name = f"watermark_{filename}"
     request_and_save(watermark_req_url, watermark_name)
